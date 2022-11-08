@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatroom</title>
+    <link rel="shortcut icon" href="../images/google.png" />
+    <link rel="apple-touch-icon" href="../images/google.png" />
+    <link rel="bookmark" href="../images/google.png" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"
+      integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var socket = io.connect("http://localhost:5000");
+
+        socket.on("connect", function () {
+          socket.send("User connected!");
+        });
+
+        socket.on("message", function (data) {
+          $("#messages").append($("<p>").text(data));
+        });
+
+        $("#sendBtn").on("click", function () {
+          socket.send($("#username").val() + ": " + $("#message").val());
+          $("#message").val("");
+        });
+      });
+    </script>
+    <h1>Chatroom</h1>
+    <div style="overflow-y: scroll; height: 400px">
+      <div id="messages"></div>
+    </div>
+    <input type="datetime" id="username" placeholder="Username" />
+    <input type="text" id="message" placeholder="Message" />
+    <button id="sendBtn">Send</button>
+  </body>
+</html>

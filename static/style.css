@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: aqua;
+}
+header img {
+  width: 50px;
+  max-width: 100%;
+  height: auto;
+}
+header h1 {
+  color: red;
+}
+
+nav {
+  background-color: gray;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  padding: 1rem 1.25rem;
+}
+
+div {
+  margin: 3rem;
+  background-color: black;
+  color: aqua;
+}
+
+h1 {
+  color: blue;
+}
